@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import TextBox from "../components/TextBox";
+import { useSelector } from "react-redux";
 
 const Login = () => {
-  const user = null; // قيمة المستخدم عادةً ما تكون `null` أو `undefined`
+  const {user} = useSelector((state)=>state.auth); 
   const {
     register,
     handleSubmit,
@@ -14,14 +15,15 @@ const Login = () => {
   const navigate = useNavigate();
 
   const submitHandler = async (data) => {
-    console.log("submit ", data); // يمكنك إضافة المنطق لتسجيل الدخول هنا
-    // Ex: تسجيل الدخول الفعلي للمستخدم والتوجيه إلى اللوحة الرئيسية
+    console.log("submit ", data); 
     navigate("/dashboard");
   };
+  
+console.log(user);
 
   useEffect(() => {
     if (user) {
-      navigate("/dashboard"); // توجيه المستخدم عندما يكون مسجل الدخول
+      navigate("/dashboard"); 
     }
   }, [user]);
 
